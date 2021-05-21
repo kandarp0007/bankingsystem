@@ -1,0 +1,75 @@
+﻿
+@model banking.Models.TransactionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section CardCss {
+    <link href="~/css/transfer.css" rel="stylesheet">
+}
+
+
+
+@if (ViewBag.IsSuccess == 1)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Successfully</strong> Transfer
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+@if (ViewBag.IsSuccess == -1)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Insufficient </strong> Balance contact Bank 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<div class="row">
+    <div class="col-75">
+        <div class="container">
+            <form method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-50">
+                        <h3>Transfer</h3><br />
+
+                        <div class="form-group">
+
+                            <label asp-for="AccountId">Your Account Number</label>
+                            <select asp-for="AccountId" class="form-control" asp-items="ViewBag.data">
+                                <option value="">Please Select Your Account</option>
+                            </select>
+                            <span asp-validation-for="FromAccountNumber"></span>
+                        </div>
+                        <br />
+                        <label asp-for="SenderName">Purpose for Sending</label>
+                        <input asp-for="SenderName" class="form-control" type="text">
+                        <span asp-validation-for="SenderName"></span>
+
+                        <label asp-for="ToAccountNumber"> To Account Number</label>
+                        <input asp-for="ToAccountNumber" class="form-control" type="number">
+                        <span asp-validation-for="ToAccountNumber"></span>
+
+                        <label asp-for="ReceiverName">Receiver Name</label>
+                        <input asp-for="ReceiverName" class="form-control" type="text">
+                        <span asp-validation-for="ReceiverName"></span>
+
+                        <label asp-for="Amount"> Amount to tranfer</label>
+                        <input asp-for="Amount" class="form-control" type="number">
+                        <span asp-validation-for="Amount"></span>
+                    </div>
+                    <div class="col-50">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info">Pay</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
